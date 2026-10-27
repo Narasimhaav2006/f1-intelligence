@@ -1,0 +1,130 @@
+{
+  "model_version": "podium_rf_v1",
+  "created_at": "2026-10-27T11:55:35.673819+00:00",
+  "dataset_version": "v1",
+  "features": [
+    "grid_effective",
+    "grid_is_zero",
+    "qual_position",
+    "has_qualifying",
+    "last_quali_session",
+    "quali_gap_pct",
+    "driver_podium_rate_5",
+    "driver_avg_finish_5",
+    "team_podium_rate_5",
+    "driver_circuit_starts",
+    "driver_circuit_podium_rate"
+  ],
+  "train_seasons": [
+    2014,
+    2023
+  ],
+  "test_seasons": [
+    2024,
+    2025
+  ],
+  "data_cutoff": "2025 season (last race in training_features)",
+  "hyperparameters": {
+    "n_estimators": 300,
+    "min_samples_leaf": 50,
+    "max_depth": 6,
+    "max_features": "sqrt",
+    "random_state": 42
+  },
+  "sklearn_version": "1.9.1",
+  "artifact_path": "ml/models/podium_rf_v1.joblib",
+  "test_metrics": {
+    "always no podium": {
+      "accuracy": 0.8487394957983193,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.5,
+      "avg_precision": 0.15126050420168066,
+      "brier": null,
+      "top3_hits": null
+    },
+    "rule: grid <= 3": {
+      "accuracy": 0.9117647058823529,
+      "precision": 0.7083333333333334,
+      "recall": 0.7083333333333334,
+      "f1": 0.7083333333333334,
+      "roc_auc": 0.9251237623762377,
+      "avg_precision": 0.6951417173552252,
+      "brier": null,
+      "top3_hits": 2.125
+    },
+    "logistic: grid only": {
+      "accuracy": 0.9117647058823529,
+      "precision": 0.7083333333333334,
+      "recall": 0.7083333333333334,
+      "f1": 0.7083333333333334,
+      "roc_auc": 0.9251237623762377,
+      "avg_precision": 0.6951417173552252,
+      "brier": 0.06591198020930238,
+      "top3_hits": 2.125
+    },
+    "random forest (0.5)": {
+      "accuracy": 0.9138655462184874,
+      "precision": 0.7348484848484849,
+      "recall": 0.6736111111111112,
+      "f1": 0.7028985507246377,
+      "roc_auc": 0.9420809268426843,
+      "avg_precision": 0.7374109183403504,
+      "brier": 0.06463715201081571,
+      "top3_hits": 2.0833333333333335
+    },
+    "random forest (top 3 per race)": {
+      "accuracy": 0.907563025210084,
+      "precision": 0.6944444444444444,
+      "recall": 0.6944444444444444,
+      "f1": 0.6944444444444444,
+      "roc_auc": 0.9420809268426843,
+      "avg_precision": 0.7374109183403504,
+      "brier": 0.06463715201081571,
+      "top3_hits": 2.0833333333333335
+    }
+  },
+  "test_gain_vs_rule": {
+    "roc_auc_95ci": [
+      -0.00010341266307420658,
+      0.03545445350379933
+    ],
+    "top3_per_race_95ci": [
+      -0.10416666666666667,
+      0.0
+    ]
+  },
+  "calibration": [
+    {
+      "rows": 527,
+      "mean_predicted": 0.014037876342580266,
+      "actual_rate": 0.007590132827324478
+    },
+    {
+      "rows": 123,
+      "mean_predicted": 0.0876325146002362,
+      "actual_rate": 0.016260162601626018
+    },
+    {
+      "rows": 84,
+      "mean_predicted": 0.21672977849378947,
+      "actual_rate": 0.14285714285714285
+    },
+    {
+      "rows": 86,
+      "mean_predicted": 0.382229251174616,
+      "actual_rate": 0.3372093023255814
+    },
+    {
+      "rows": 95,
+      "mean_predicted": 0.6373486631584141,
+      "actual_rate": 0.7157894736842105
+    },
+    {
+      "rows": 37,
+      "mean_predicted": 0.8048657874664641,
+      "actual_rate": 0.7837837837837838
+    }
+  ]
+}
